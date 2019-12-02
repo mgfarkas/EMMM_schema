@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="EMMMwrap">
+        <xs:annotation>
+            <xs:documentation>Holds a collection of EMMM records</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="EMMM"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EMMM">
+        <xs:annotation>
+            <xs:documentation>root</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="administrative"/>
+                <xs:element ref="Descriptive"/>
+                <xs:element ref="itemHistory"/>
+                <xs:element ref="image"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="administrative">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="identifier"/>
+                <xs:element ref="repository"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="institutionProvenance"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationWrap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Descriptive">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="displayTitle"/>
+                <xs:element ref="objectName"/>
+                <xs:element ref="numberPieces"/>
+                <xs:element ref="indivPiecesWrap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="itemHistory"/>
+    <xs:element name="image"/>
+    <xs:element name="identifier">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="institutionalIdentifier" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="institutionalIdentifier" type="xs:string"/>
+    <xs:element name="repository">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="repositoryName"/>
+                <xs:element ref="repositoryLocation"/>
+                <xs:element minOccurs="0" ref="collectionName"/>
+                <xs:element ref="storageUnit"/>
+                <xs:element minOccurs="0" ref="storageShelf"/>
+                <xs:element minOccurs="0" ref="storageBox"/>
+                <xs:element minOccurs="0" ref="storageNote"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="repositoryName" type="xs:string"/>
+    <xs:element name="repositoryLocation" type="xs:string"/>
+    <xs:element name="collectionName" type="xs:string"/>
+    <xs:element name="storageUnit" type="xs:string"/>
+    <xs:element name="storageShelf" type="xs:string"/>
+    <xs:element name="storageBox" type="xs:string"/>
+    <xs:element name="storageNote" type="xs:string"/>
+    <xs:element name="institutionProvenance" type="xs:string"/>
+    <xs:element name="conservationWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationNeed"/>
+                <xs:element minOccurs="0" ref="currentStatus"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationHistoryWrap"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationCare"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conservationNeed" type="xs:string"/>
+    <xs:element name="currentStatus" type="xs:string"/>
+    <xs:element name="conservationHistoryWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="conservationHistory"/>
+                <xs:element maxOccurs="unbounded" ref="conservationAgent"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conservationHistory" type="xs:string"/>
+    <xs:element default="" name="conservationAgent">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="internal" name="agenttype" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conservationCare" type="xs:string"/>
+    <xs:element name="displayTitle" type="xs:string"/>
+    <xs:element name="objectName">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" form="unqualified" name="termsource"
+                        type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="numberPieces" type="xs:integer"/>
+    <xs:element name="indivPiecesWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="indivPieces"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="indivPieces">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
