@@ -39,7 +39,10 @@
                 <xs:element ref="displayTitle"/>
                 <xs:element ref="objectName"/>
                 <xs:element ref="numberPieces"/>
-                <xs:element ref="indivPiecesWrap"/>
+                <xs:element maxOccurs="unbounded" ref="indivPiecesWrap"/>
+                <xs:element ref="materialsWrap"/>
+                <xs:element maxOccurs="unbounded" ref="foundationPiecesWrap"/>
+                <xs:element ref="dimensionsWrapfoundationDesc"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -131,6 +134,115 @@
                 <xs:extension base="xs:string">
                     <xs:attribute default="AAT" name="termsource" type="xs:string"/>
                     <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="materialsWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="typeFabric"/>
+                <xs:element maxOccurs="unbounded" ref="typeDecoration"/>
+                <xs:element ref="typePattern"/>
+                <xs:element maxOccurs="unbounded" ref="color"/>
+                <xs:element ref="methodCreation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="typeFabric">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="typeDecoration">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="typePattern">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="color">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="colorMain"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="colorSecondary"/>
+                <xs:element maxOccurs="unbounded" ref="pantoneColorCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorMain">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorSecondary">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pantoneColorCode" type="xs:string"/>
+    <xs:element name="methodCreation" type="xs:string"/>
+    <xs:element name="foundationPiecesWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="foundationPiece"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="foundationDesc"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="foundationPiece">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="foundationDesc" type="xs:string"/>
+    <xs:element name="dimensionsWrapfoundationDesc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="measurement"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="measurement">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="measuretype" type="xs:string" use="required"/>
+                    <xs:attribute name="value" type="xs:string" use="required"/>
+                    <xs:attribute name="unit" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
