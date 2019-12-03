@@ -318,7 +318,7 @@
                 <xs:element ref="imageFile"/>
                 <xs:element minOccurs="0" ref="creationTools"/>
                 <xs:element ref="imageCreateDate"/>
-                <xs:element ref="fileProperty"/>
+                <xs:element ref="fileProperty" minOccurs="0"/>
                 <xs:element ref="fileType"/>
                 <xs:element maxOccurs="unbounded" ref="imageRightsInformation"/>
             </xs:sequence>
