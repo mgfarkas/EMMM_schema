@@ -46,7 +46,403 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="provenance"><?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="EMMMwrap">
+        <xs:annotation>
+            <xs:documentation>Holds a collection of EMMM records</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="EMMM"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EMMM">
+        <xs:annotation>
+            <xs:documentation>root</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="administrative"/>
+                <xs:element ref="Descriptive"/>
+                <xs:element ref="provenance"/>
+                <xs:element ref="image" minOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="administrative">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="identifier"/>
+                <xs:element ref="repository"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="institutionProvenance"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationWrap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Descriptive">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="displayTitle"/>
+                <xs:element ref="objectName"/>
+                <xs:element ref="numberPieces"/>
+                <xs:element maxOccurs="unbounded" ref="indivPiecesWrap"/>
+                <xs:element ref="materialsWrap"/>
+                <xs:element maxOccurs="unbounded" ref="foundationPiecesWrap"/>
+                <xs:element ref="dimensionsWrapfoundationDesc"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="provenance">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ownerWrap"/>
+                <xs:element ref="acquired"/>
+                <xs:element ref="creator"/>
+                <xs:element ref="dateCreated"/>
+                <xs:element ref="originPlace"/>
+                <xs:element ref="costumeType"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="notes"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="image">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="imageWrap" minOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="identifier">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="institutionalIdentifier" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="institutionalIdentifier" type="xs:string"/>
+    <xs:element name="repository">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="repositoryName"/>
+                <xs:element ref="repositoryLocation"/>
+                <xs:element minOccurs="0" ref="collectionName"/>
+                <xs:element ref="storageUnit"/>
+                <xs:element minOccurs="0" ref="storageShelf"/>
+                <xs:element minOccurs="0" ref="storageBox"/>
+                <xs:element minOccurs="0" ref="storageNote"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="repositoryName" type="xs:string"/>
+    <xs:element name="repositoryLocation" type="xs:string"/>
+    <xs:element name="collectionName" type="xs:string"/>
+    <xs:element name="storageUnit" type="xs:string"/>
+    <xs:element name="storageShelf" type="xs:string"/>
+    <xs:element name="storageBox" type="xs:string"/>
+    <xs:element name="storageNote" type="xs:string"/>
+    <xs:element name="institutionProvenance" type="xs:string"/>
+    <xs:element name="conservationWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationNeed"/>
+                <xs:element minOccurs="0" ref="currentStatus"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationHistoryWrap"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationCare"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conservationNeed" type="xs:string"/>
+    <xs:element name="currentStatus" type="xs:string"/>
+    <xs:element name="conservationHistoryWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="conservationHistory"/>
+                <xs:element maxOccurs="unbounded" ref="conservationAgent"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conservationHistory" type="xs:string"/>
+    <xs:element default="" name="conservationAgent">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="internal" name="agenttype" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conservationCare" type="xs:string"/>
+    <xs:element name="displayTitle" type="xs:string"/>
+    <xs:element name="objectName">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" form="unqualified" name="termsource"
+                        type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="numberPieces" type="xs:integer"/>
+    <xs:element name="indivPiecesWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="indivPieces"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="indivPieces">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="materialsWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="typeFabric"/>
+                <xs:element maxOccurs="unbounded" ref="typeDecoration"/>
+                <xs:element ref="typePattern"/>
+                <xs:element maxOccurs="unbounded" ref="color"/>
+                <xs:element ref="methodCreation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="typeFabric">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="typeDecoration">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="typePattern">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="color">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="colorMain"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="colorSecondary"/>
+                <xs:element maxOccurs="unbounded" ref="pantoneColorCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorMain">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorSecondary">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pantoneColorCode" type="xs:string"/>
+    <xs:element name="methodCreation" type="xs:string"/>
+    <xs:element name="foundationPiecesWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="foundationPiece"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="foundationDesc"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="foundationPiece">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="AAT" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="foundationDesc" type="xs:string"/>
+    <xs:element name="dimensionsWrapfoundationDesc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="measurement"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="measurement">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="measuretype" type="xs:string" use="required"/>
+                    <xs:attribute name="value" type="xs:string" use="required"/>
+                    <xs:attribute name="unit" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ownerWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="currentOwner"/>
+                <xs:element ref="currentOwnerContact"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="currentOwner" type="xs:string"/>
+    <xs:element name="currentOwnerContact" type="xs:string"/>
+    <xs:element name="acquired">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="acquiredDate"/>
+                <xs:element ref="purchaser"/>
+                <xs:element ref="purchaseFunding"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="previousOwner"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="acquiredDate" type="xs:date"/>
+    <xs:element name="purchaser" type="xs:string"/>
+    <xs:element name="purchaseFunding" type="xs:string"/>
+    <xs:element name="previousOwner" type="xs:string"/>
+    <xs:element name="creator">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="LCNAF" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dateCreated" type="xs:string"/>
+    <xs:element name="originPlace">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="TGN" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="costumeType" type="xs:string"/>
+    <xs:element name="notes" type="xs:string"/>
+    <xs:element name="imageWrap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="imageFile"/>
+                <xs:element minOccurs="0" ref="creationTools"/>
+                <xs:element ref="imageCreateDate"/>
+                <xs:element ref="fileProperty"/>
+                <xs:element ref="fileType"/>
+                <xs:element maxOccurs="unbounded" ref="imageRightsInformation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="imageFile">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type" type="xs:string"/>
+                    <xs:attribute name="URI" type="xs:anyURI"/>
+                    <xs:attribute name="source" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="creationTools" nillable="false">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="scannerTech"/>
+                <xs:element ref="scannerManufacturer"/>
+                <xs:element ref="scannerModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="scannerTech" type="xs:string"/>
+    <xs:element name="scannerManufacturer">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="VIAF" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="scannerModel" type="xs:string"/>
+    <xs:element name="imageCreateDate" type="xs:date"/>
+    <xs:element name="fileProperty">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="fileSize"/>
+                <xs:element minOccurs="0" ref="fileDPI"/>
+                <xs:element minOccurs="0" ref="meshTriangleCount"/>
+                <xs:element minOccurs="0" ref="meshVerticeCount"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fileSize" type="xs:integer"/>
+    <xs:element name="fileDPI" type="xs:integer"/>
+    <xs:element name="meshTriangleCount" type="xs:integer"/>
+    <xs:element name="meshVerticeCount" type="xs:integer"/>
+    <xs:element name="fileType" type="xs:string"/>
+    <xs:element name="imageRightsInformation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="imageRightsAgent"/>
+                <xs:element ref="agentContact"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="imageRightsAgent">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="agentContact" type="xs:string"/>
+    <xs:element name="imageRights"/>
+    <xs:element name="imageRightsStatement"/>
+</xs:schema>
+
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="ownerWrap"/>
