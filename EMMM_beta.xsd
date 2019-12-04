@@ -27,7 +27,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="identifier"/>
-                <xs:element ref="repository"/>
+                <xs:element ref="repository" maxOccurs="unbounded"/>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="institutionProvenance"/>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationWrap"/>
             </xs:sequence>
@@ -42,7 +42,7 @@
                 <xs:element maxOccurs="unbounded" ref="indivPiecesWrap"/>
                 <xs:element ref="materialsWrap"/>
                 <xs:element maxOccurs="unbounded" ref="foundationPiecesWrap"/>
-                <xs:element ref="dimensionsWrapfoundationDesc"/>
+                <xs:element ref="dimensionsWrapDesc"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -88,7 +88,16 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="repositoryName" type="xs:string"/>
-    <xs:element name="repositoryLocation" type="xs:string"/>
+    <xs:element name="repositoryLocation">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="TGN" name="termsource" type="xs:string"/>
+                    <xs:attribute name="termsourceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="collectionName" type="xs:string"/>
     <xs:element name="storageUnit" type="xs:string"/>
     <xs:element name="storageShelf" type="xs:string"/>
@@ -161,7 +170,7 @@
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" ref="typeFabric"/>
                 <xs:element maxOccurs="unbounded" ref="typeDecoration"/>
-                <xs:element ref="typePattern"/>
+                <xs:element ref="typePattern" maxOccurs="unbounded"/>
                 <xs:element maxOccurs="unbounded" ref="color"/>
                 <xs:element ref="methodCreation"/>
             </xs:sequence>
@@ -247,10 +256,11 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="foundationDesc" type="xs:string"/>
-    <xs:element name="dimensionsWrapfoundationDesc">
+    <xs:element name="dimensionsWrapDesc">
         <xs:complexType>
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" ref="measurement"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="measurementDesc"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -265,6 +275,7 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
+    <xs:element name="measurementDesc" type="xs:string"/>
     <xs:element name="ownerWrap">
         <xs:complexType>
             <xs:sequence>
@@ -293,8 +304,8 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute default="LCNAF" name="termsource" type="xs:string"/>
-                    <xs:attribute name="termsourceID" type="xs:string"/>
+                    <xs:attribute name="termsource" type="xs:string" use="required"/>
+                    <xs:attribute name="termsourceID" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -377,6 +388,8 @@
             <xs:sequence>
                 <xs:element ref="imageRightsAgent"/>
                 <xs:element ref="agentContact"/>
+                <xs:element ref="imageRights"/>
+                <xs:element ref="imageRightsStatement"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -391,6 +404,6 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="agentContact" type="xs:string"/>
-    <xs:element name="imageRights"/>
-    <xs:element name="imageRightsStatement"/>
+    <xs:element name="imageRights" type="xs:string"/>
+    <xs:element name="imageRightsStatement" type="xs:string"/>
 </xs:schema>
