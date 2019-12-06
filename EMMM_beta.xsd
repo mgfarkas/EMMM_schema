@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="en">
+            
+            XML EMMM Schema for IS562 Metadata in Theory and Practice
+            
+            Created 2019-12-06
+            
+            Created by 
+            
+            Elora Agsten 
+            Monica Hoh 
+            Medina Grace 
+            Michael Farkas 
+            
+            The EMMM Metadata Schema seeks to provide some context for records of Victorian’s women’s clothing and their relation to the human body. 
+            
+            
+        </xs:documentation>
+        
+    </xs:annotation>
     <xs:element name="EMMMwrap">
         <xs:annotation>
-            <xs:documentation>Holds a collection of EMMM records</xs:documentation>
+            <xs:documentation>This is the top level wrap. It holds a collection of EMMM records</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
@@ -12,7 +32,7 @@
     </xs:element>
     <xs:element name="EMMM">
         <xs:annotation>
-            <xs:documentation>root</xs:documentation>
+            <xs:documentation>This holds the record of individual costumes. It is root.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
