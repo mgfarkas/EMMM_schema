@@ -170,11 +170,13 @@
     <xs:element name="indivPiecesWrap">
         <xs:complexType>
             <xs:sequence>
+                <xs:element ref="indivPieceID"/>
                 <xs:element maxOccurs="unbounded" ref="indivPieces"/>
                 <xs:element maxOccurs="unbounded" ref="materialsWrap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="indivPieceID" type="xs:string"/>
     <xs:element name="indivPieces">
         <xs:complexType>
             <xs:simpleContent>
@@ -192,7 +194,7 @@
                 <xs:element maxOccurs="unbounded" ref="typeDecoration"/>
                 <xs:element ref="typePattern" maxOccurs="unbounded"/>
                 <xs:element maxOccurs="unbounded" ref="color"/>
-                <xs:element ref="methodCreation"/>
+                <xs:element ref="methodCreation" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -255,7 +257,15 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
-    <xs:element name="pantoneColorCode" type="xs:string"/>
+    <xs:element name="pantoneColorCode">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="primary" name="source" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="methodCreation" type="xs:string"/>
     <xs:element name="foundationPiecesWrap">
         <xs:complexType>
