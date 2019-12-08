@@ -61,7 +61,7 @@
                 <xs:element ref="numberPieces"/>
                 <xs:element maxOccurs="unbounded" ref="indivPiecesWrap"/>
                 <xs:element maxOccurs="unbounded" ref="foundationPiecesWrap"/>
-                <xs:element ref="dimensionsWrapDesc"/>
+                <xs:element ref="dimensionsWrapDesc" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -299,7 +299,6 @@
             <xs:simpleContent>
                 <xs:extension base="xs:string">
                     <xs:attribute name="measuretype" type="xs:string" use="required"/>
-                    <xs:attribute name="value" type="xs:string" use="required"/>
                     <xs:attribute name="unit" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:simpleContent>
