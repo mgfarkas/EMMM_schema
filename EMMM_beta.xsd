@@ -18,7 +18,7 @@
             
             
         </xs:documentation>
-        
+
     </xs:annotation>
     <xs:element name="EMMMwrap">
         <xs:annotation>
@@ -60,7 +60,6 @@
                 <xs:element ref="objectName"/>
                 <xs:element ref="numberPieces"/>
                 <xs:element maxOccurs="unbounded" ref="indivPiecesWrap"/>
-                <xs:element ref="materialsWrap"/>
                 <xs:element maxOccurs="unbounded" ref="foundationPiecesWrap"/>
                 <xs:element ref="dimensionsWrapDesc"/>
             </xs:sequence>
@@ -172,6 +171,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" ref="indivPieces"/>
+                <xs:element maxOccurs="unbounded" ref="materialsWrap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
