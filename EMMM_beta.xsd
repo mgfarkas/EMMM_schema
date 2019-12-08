@@ -32,7 +32,7 @@
     </xs:element>
     <xs:element name="EMMM">
         <xs:annotation>
-            <xs:documentation>This holds the record of individual costumes. It is root.</xs:documentation>
+            <xs:documentation>This holds the record of individual clothing item. It is root.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
@@ -134,7 +134,15 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="conservationNeed" type="xs:string"/>
+    <xs:element name="conservationNeed">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="indivpieceID" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="currentStatus" type="xs:string"/>
     <xs:element name="conservationHistoryWrap">
         <xs:complexType>
