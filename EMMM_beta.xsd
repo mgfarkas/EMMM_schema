@@ -47,8 +47,9 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="identifier"/>
-                <xs:element ref="repository" maxOccurs="unbounded"/>
+                <xs:element ref="repositoryWrap" maxOccurs="unbounded"/>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="institutionProvenance"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="cost"/>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="conservationWrap"/>
             </xs:sequence>
         </xs:complexType>
@@ -73,7 +74,7 @@
                 <xs:element ref="creator"/>
                 <xs:element ref="dateCreated"/>
                 <xs:element ref="originPlace"/>
-                <xs:element ref="costumeType"/>
+                <xs:element ref="clothingType"/>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="notes"/>
             </xs:sequence>
         </xs:complexType>
@@ -93,7 +94,7 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="institutionalIdentifier" type="xs:string"/>
-    <xs:element name="repository">
+    <xs:element name="repositoryWrap">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="repositoryName"/>
@@ -350,7 +351,7 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
-    <xs:element name="costumeType" type="xs:string"/>
+    <xs:element name="clothingType" type="xs:string"/>
     <xs:element name="notes" type="xs:string"/>
     <xs:element name="imageWrap">
         <xs:complexType>
@@ -435,4 +436,5 @@
     <xs:element name="agentContact" type="xs:string"/>
     <xs:element name="imageRights" type="xs:string"/>
     <xs:element name="imageRightsStatement" type="xs:string"/>
+    <xs:element name="cost" type="xs:string"/>
 </xs:schema>
