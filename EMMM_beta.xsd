@@ -242,7 +242,7 @@
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" ref="colorMain"/>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="colorSecondary"/>
-                <xs:element maxOccurs="unbounded" ref="pantoneColorCode"/>
+                <xs:element maxOccurs="unbounded" ref="pantoneColorCode" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
